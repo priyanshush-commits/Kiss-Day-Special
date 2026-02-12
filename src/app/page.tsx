@@ -1,13 +1,14 @@
+
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { Heart, Mail, Sparkles, Palette, Gift, Moon, Sun, Flame, Cloud } from 'lucide-react';
+import { Heart, Mail, Sparkles, Moon, Sun, Flame, Cloud, X } from 'lucide-react';
 import FloatingHearts from '@/components/FloatingHearts';
 import MouseHeartTrail from '@/components/MouseHeartTrail';
 import { ThemeProvider, useTheme } from '@/components/ThemeWrapper';
 import LoveMeter from '@/components/LoveMeter';
 import SurpriseExplosion from '@/components/SurpriseExplosion';
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
 
 const MainContent = () => {
   const { theme, setTheme } = useTheme();
@@ -48,143 +49,131 @@ const MainContent = () => {
   if (loading) {
     return (
       <div className="fixed inset-0 bg-background flex items-center justify-center z-[200]">
-        <div className="relative">
-          <Heart className="w-16 h-16 text-primary animate-pulse-heart fill-current" />
-          <div className="absolute top-0 left-0 w-full h-full border-4 border-primary/20 rounded-full animate-ping" />
-        </div>
+        <Heart className="w-16 h-16 text-primary animate-pulse-heart fill-current" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen animated-bg selection:bg-primary/30 selection:text-primary overflow-x-hidden">
+    <div className="min-h-screen animated-bg selection:bg-primary/30 selection:text-primary overflow-x-hidden relative">
       <FloatingHearts />
       <MouseHeartTrail />
 
       {/* Hero Section */}
       <main className="relative z-10 container mx-auto px-4 py-16 flex flex-col items-center justify-center min-h-screen text-center">
         
-        {/* Title Group */}
-        <div className="mb-12 space-y-4">
-          <h1 className="text-6xl md:text-8xl font-headline text-primary drop-shadow-[0_0_15px_rgba(255,192,203,0.8)] animate-pulse-heart">
+        <div className="mb-12 space-y-6">
+          <h1 className="text-6xl md:text-8xl font-headline text-primary drop-shadow-[0_0_20px_hsl(var(--primary)/0.5)] animate-pulse-heart">
             Happy Kiss Day 💋
           </h1>
-          <div className="typing-container">
-            <p className="text-xl md:text-3xl font-body text-foreground animate-typing overflow-hidden whitespace-nowrap">
-              Aaj ka din sirf tumhare naam...
-            </p>
-          </div>
-        </div>
-
-        {/* Central Card */}
-        <div className="glass p-8 md:p-12 rounded-[2.5rem] shadow-2xl max-w-2xl w-full transform hover:scale-[1.02] transition-all duration-500 mb-12 relative overflow-hidden group">
-          <div className="absolute -top-10 -right-10 w-32 h-32 bg-primary/20 rounded-full blur-3xl group-hover:bg-primary/40 transition-colors" />
-          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-secondary/20 rounded-full blur-3xl group-hover:bg-secondary/40 transition-colors" />
-          
-          <div className="relative text-6xl mb-6 transform group-hover:scale-110 transition-transform">👩‍❤️‍💋‍👨</div>
-          
-          <h2 className="text-2xl md:text-4xl font-headline text-foreground mb-6">
-            A Moment of Pure Magic
-          </h2>
-          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-body">
-            A kiss is a lovely trick designed by nature to stop speech when words become superfluous. Let our hearts speak today.
+          <p className="text-xl md:text-3xl font-body text-foreground/80">
+            A celebration of a million unspoken words...
           </p>
         </div>
 
-        {/* Buttons Grid */}
+        {/* Central Quote Card */}
+        <div className="glass p-8 md:p-12 rounded-[3rem] shadow-2xl max-w-2xl w-full transform hover:scale-[1.02] transition-all duration-500 mb-12 relative overflow-hidden group">
+          <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl" />
+          <div className="relative text-7xl mb-6 transform group-hover:scale-110 transition-transform">👩‍❤️‍💋‍👨</div>
+          <h2 className="text-2xl md:text-4xl font-headline text-foreground mb-6">
+            Magic in the Air
+          </h2>
+          <p className="text-lg md:text-xl text-muted-foreground leading-relaxed font-body italic">
+            "A kiss is a lovely trick designed by nature to stop speech when words become superfluous."
+          </p>
+        </div>
+
+        {/* Actions Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-4xl px-4">
           <button 
             onClick={() => setShowSecret(true)}
-            className="glass flex items-center justify-center gap-3 p-5 rounded-2xl hover:bg-primary/20 hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+            className="glass flex items-center justify-center gap-3 p-6 rounded-2xl hover:bg-primary/20 hover:scale-105 transition-all duration-300 group shadow-lg"
           >
-            <Mail className="w-5 h-5 group-hover:animate-bounce" />
-            <span className="font-headline text-lg">Secret Message</span>
+            <Mail className="w-6 h-6 group-hover:animate-bounce" />
+            <span className="font-headline text-xl">Secret Message</span>
           </button>
 
           <button 
             onClick={handleVirtualKiss}
-            className="glass flex items-center justify-center gap-3 p-5 rounded-2xl hover:bg-primary/20 hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+            className="glass flex items-center justify-center gap-3 p-6 rounded-2xl hover:bg-primary/20 hover:scale-105 transition-all duration-300 group shadow-lg"
           >
-            <Sparkles className="w-5 h-5 group-hover:animate-sparkle" />
-            <span className="font-headline text-lg">Send Virtual Kiss</span>
+            <Sparkles className="w-6 h-6 group-hover:animate-sparkle" />
+            <span className="font-headline text-xl">Virtual Kiss</span>
           </button>
 
           <button 
             onClick={() => setShowLoveMeter(true)}
-            className="glass flex items-center justify-center gap-3 p-5 rounded-2xl hover:bg-primary/20 hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+            className="glass flex items-center justify-center gap-3 p-6 rounded-2xl hover:bg-primary/20 hover:scale-105 transition-all duration-300 group shadow-lg"
           >
-            <Heart className="w-5 h-5 group-hover:fill-current" />
-            <span className="font-headline text-lg">Love Meter</span>
+            <Heart className="w-6 h-6 group-hover:fill-current" />
+            <span className="font-headline text-xl">Love Meter</span>
           </button>
 
           <button 
             onClick={cycleTheme}
-            className="glass flex items-center justify-center gap-3 p-5 rounded-2xl hover:bg-primary/20 hover:scale-105 hover:shadow-lg transition-all duration-300 group"
+            className="glass flex items-center justify-center gap-3 p-6 rounded-2xl hover:bg-primary/20 hover:scale-105 transition-all duration-300 group shadow-lg"
           >
             {getThemeIcon()}
-            <span className="font-headline text-lg">Change Theme</span>
+            <span className="font-headline text-xl">Themes</span>
           </button>
 
           <button 
             onClick={() => setShowSurprise(true)}
-            className="glass flex items-center justify-center gap-3 p-5 rounded-2xl bg-primary/10 hover:bg-primary/30 hover:scale-105 hover:shadow-lg transition-all duration-300 group lg:col-span-2"
+            className="glass flex items-center justify-center gap-3 p-6 rounded-2xl bg-primary/10 hover:bg-primary/30 hover:scale-105 transition-all duration-300 group lg:col-span-2 shadow-xl border-primary/30"
           >
-            <Gift className="w-6 h-6 group-hover:rotate-12 transition-transform" />
-            <span className="font-headline text-xl">The Surprise</span>
+            <Sparkles className="w-7 h-7" />
+            <span className="font-headline text-2xl">The Big Surprise</span>
           </button>
         </div>
       </main>
 
-      {/* Floating Sparkle for Virtual Kiss */}
+      {/* Virtual Kiss Effect */}
       {virtualKiss && (
         <div className="fixed inset-0 flex items-center justify-center z-[150] pointer-events-none">
-          <div className="text-9xl animate-in zoom-in-50 fade-in slide-in-from-bottom-20 duration-1000">
+          <div className="text-9xl animate-in zoom-in-50 fade-in duration-1000">
             💋
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-full h-full bg-primary/20 rounded-full blur-2xl animate-ping" />
-            </div>
           </div>
-          {Array.from({ length: 12 }).map((_, i) => (
-            <Sparkles 
-              key={i}
-              className="absolute text-primary animate-out fade-out zoom-out duration-1000"
-              style={{
-                left: `calc(50% + ${(Math.random() - 0.5) * 300}px)`,
-                top: `calc(50% + ${(Math.random() - 0.5) * 300}px)`,
-                transform: `scale(${Math.random() * 2})`,
-              }}
-            />
-          ))}
         </div>
       )}
 
-      {/* Secret Message Modal */}
+      {/* Secret Message Dialog - Fully Optimized */}
       <Dialog open={showSecret} onOpenChange={setShowSecret}>
-        <DialogContent className="glass bg-white/10 backdrop-blur-[20px] sm:max-w-[500px] border border-white/20 text-white p-0 overflow-hidden rounded-[2rem] shadow-[0_0_80px_rgba(255,192,203,0.3)] ring-1 ring-white/30">
-          <div className="p-10 space-y-6 relative flex flex-col items-center justify-center">
-            <div className="absolute inset-0 bg-primary/20 -z-10 blur-3xl pointer-events-none opacity-50" />
+        <DialogOverlay className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-md" />
+        <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[210] w-[90%] max-w-lg p-0 border-none bg-transparent shadow-none focus:outline-none">
+          <div className="glass glow-border rounded-[2.5rem] p-8 md:p-12 text-center animate-dialog-bounce relative">
+            <button 
+              onClick={() => setShowSecret(false)}
+              className="absolute right-6 top-6 text-white/70 hover:text-white hover:scale-110 transition-all z-10"
+            >
+              <X className="w-8 h-8" />
+            </button>
             
-            <DialogHeader className="w-full">
-              <DialogTitle className="text-4xl md:text-5xl font-headline text-white text-center drop-shadow-md">
-                My Dear Love...
-              </DialogTitle>
-            </DialogHeader>
+            <div className="space-y-8">
+              <h2 className="text-4xl md:text-5xl font-headline text-white text-shadow-romantic drop-shadow-lg">
+                For You, Always...
+              </h2>
+              
+              <div className="space-y-6 text-xl md:text-2xl font-body leading-relaxed text-white/95 text-shadow-romantic">
+                <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
+                  In every shared silence and every lingering look, I find reasons to love you more.
+                </p>
+                <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[1300ms] fill-mode-both">
+                  This Kiss Day, I don't just send you a message, I send you my heart.
+                </p>
+                <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[2300ms] fill-mode-both">
+                  Forever isn't long enough when I'm with you.
+                </p>
+              </div>
 
-            <div className="space-y-6 text-xl md:text-2xl font-body leading-relaxed text-center drop-shadow-sm">
-              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
-                In the silence between our breaths, your presence is the melody I crave.
-              </p>
-              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[1300ms] fill-mode-both">
-                Every kiss we've shared is a memory etched in gold...
-              </p>
-              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[2300ms] fill-mode-both">
-                And every kiss we haven't is a promise I look forward to keeping.
-              </p>
               <div className="pt-4 animate-in fade-in zoom-in duration-1000 delay-[3300ms] fill-mode-both">
-                <p className="font-bold italic text-white text-3xl md:text-4xl drop-shadow-lg">
+                <p className="font-headline font-bold text-3xl md:text-4xl text-primary drop-shadow-[0_0_10px_rgba(255,192,203,0.5)]">
                   Forever Yours.
                 </p>
-                <div className="mt-2 text-primary animate-pulse-heart">❤️❤️❤️</div>
+                <div className="mt-4 flex justify-center gap-2">
+                  <Heart className="w-6 h-6 text-primary fill-current animate-pulse-heart" />
+                  <Heart className="w-6 h-6 text-primary fill-current animate-pulse-heart [animation-delay:200ms]" />
+                  <Heart className="w-6 h-6 text-primary fill-current animate-pulse-heart [animation-delay:400ms]" />
+                </div>
               </div>
             </div>
           </div>
@@ -195,9 +184,8 @@ const MainContent = () => {
       
       {showSurprise && <SurpriseExplosion onComplete={() => setShowSurprise(false)} />}
 
-      {/* Footer */}
-      <footer className="relative z-10 py-8 text-center text-muted-foreground font-body text-sm opacity-60">
-        <p>Made with ❤️ for Kiss Day Dreams</p>
+      <footer className="relative z-10 py-12 text-center text-muted-foreground font-body text-sm opacity-60">
+        <p>Created with 💖 for a beautiful Kiss Day</p>
       </footer>
     </div>
   );
