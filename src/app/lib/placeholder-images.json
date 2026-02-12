@@ -1,0 +1,11 @@
+
+{
+  "placeholderImages": [
+    {
+      "id": "romantic-silhouette",
+      "description": "Romantic couple silhouette at sunset",
+      "imageUrl": "https://picsum.photos/seed/romantic1/800/600",
+      "imageHint": "romantic couple"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+
 import type {Config} from 'tailwindcss';
 
 export default {
@@ -10,8 +11,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        body: ['Alegreya', 'serif'],
+        headline: ['Belleza', 'sans-serif'],
         code: ['monospace'],
       },
       colors: {
@@ -88,10 +89,37 @@ export default {
             height: '0',
           },
         },
+        'pulse-heart': {
+          '0%, 100%': { transform: 'scale(1)' },
+          '50%': { transform: 'scale(1.1)' },
+        },
+        'float': {
+          '0%': { transform: 'translateY(0) translateX(0)', opacity: '0' },
+          '10%': { opacity: '0.8' },
+          '90%': { opacity: '0.8' },
+          '100%': { transform: 'translateY(-100vh) translateX(20px)', opacity: '0' },
+        },
+        'typing': {
+          from: { width: '0' },
+          to: { width: '100%' }
+        },
+        'blink': {
+          '50%': { borderColor: 'transparent' }
+        },
+        'sparkle': {
+          '0%, 100%': { opacity: '0', transform: 'scale(0)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' },
+        }
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+        'pulse-heart': 'pulse-heart 2s infinite ease-in-out',
+        'float-slow': 'float 15s infinite linear',
+        'float-medium': 'float 10s infinite linear',
+        'float-fast': 'float 7s infinite linear',
+        'typing': 'typing 3.5s steps(40, end), blink .75s step-end infinite',
+        'sparkle': 'sparkle 1.5s infinite ease-in-out',
       },
     },
   },
