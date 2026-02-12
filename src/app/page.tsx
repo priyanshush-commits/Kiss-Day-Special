@@ -161,8 +161,9 @@ const MainContent = () => {
 
       {/* Modals & Popups */}
       <Dialog open={showSecret} onOpenChange={setShowSecret}>
-        <DialogContent className="glass sm:max-w-[425px] border-none text-foreground p-0 overflow-hidden rounded-3xl">
-          <div className="p-8 space-y-4">
+        <DialogContent className="glass sm:max-w-[425px] border border-primary/30 text-foreground p-0 overflow-hidden rounded-3xl shadow-[0_0_50px_hsl(var(--primary)/0.4)]">
+          <div className="p-8 space-y-4 relative">
+            <div className="absolute inset-0 bg-primary/5 -z-10 blur-2xl pointer-events-none" />
             <DialogHeader>
               <DialogTitle className="text-3xl font-headline text-primary text-center">My Dear Love...</DialogTitle>
             </DialogHeader>
