@@ -8,7 +8,7 @@ import MouseHeartTrail from '@/components/MouseHeartTrail';
 import { ThemeProvider, useTheme } from '@/components/ThemeWrapper';
 import LoveMeter from '@/components/LoveMeter';
 import SurpriseExplosion from '@/components/SurpriseExplosion';
-import { Dialog, DialogContent, DialogOverlay } from '@/components/ui/dialog';
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from '@/components/ui/dialog';
 
 const MainContent = () => {
   const { theme, setTheme } = useTheme();
@@ -136,18 +136,13 @@ const MainContent = () => {
         </div>
       )}
 
-      {/* Secret Message Dialog - Fully Optimized */}
+      {/* Secret Message Dialog - Accessible & Optimized */}
       <Dialog open={showSecret} onOpenChange={setShowSecret}>
-        <DialogOverlay className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-md" />
         <DialogContent className="fixed left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[210] w-[90%] max-w-lg p-0 border-none bg-transparent shadow-none focus:outline-none">
+          <DialogTitle className="sr-only">For You, Always...</DialogTitle>
+          <DialogDescription className="sr-only">A romantic secret message shared just for you on Kiss Day.</DialogDescription>
+          
           <div className="glass glow-border rounded-[2.5rem] p-8 md:p-12 text-center animate-dialog-bounce relative">
-            <button 
-              onClick={() => setShowSecret(false)}
-              className="absolute right-6 top-6 text-white/70 hover:text-white hover:scale-110 transition-all z-10"
-            >
-              <X className="w-8 h-8" />
-            </button>
-            
             <div className="space-y-8">
               <h2 className="text-4xl md:text-5xl font-headline text-white text-shadow-romantic drop-shadow-lg">
                 For You, Always...
