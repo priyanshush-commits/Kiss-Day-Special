@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from 'react';
@@ -159,18 +158,34 @@ const MainContent = () => {
         </div>
       )}
 
-      {/* Modals & Popups */}
+      {/* Secret Message Modal */}
       <Dialog open={showSecret} onOpenChange={setShowSecret}>
-        <DialogContent className="glass sm:max-w-[425px] border border-primary/30 text-foreground p-0 overflow-hidden rounded-3xl shadow-[0_0_50px_hsl(var(--primary)/0.4)]">
-          <div className="p-8 space-y-4 relative">
-            <div className="absolute inset-0 bg-primary/5 -z-10 blur-2xl pointer-events-none" />
-            <DialogHeader>
-              <DialogTitle className="text-3xl font-headline text-primary text-center">My Dear Love...</DialogTitle>
+        <DialogContent className="glass bg-white/10 backdrop-blur-[20px] sm:max-w-[500px] border border-white/20 text-white p-0 overflow-hidden rounded-[2rem] shadow-[0_0_80px_rgba(255,192,203,0.3)] ring-1 ring-white/30">
+          <div className="p-10 space-y-6 relative flex flex-col items-center justify-center">
+            <div className="absolute inset-0 bg-primary/20 -z-10 blur-3xl pointer-events-none opacity-50" />
+            
+            <DialogHeader className="w-full">
+              <DialogTitle className="text-4xl md:text-5xl font-headline text-white text-center drop-shadow-md">
+                My Dear Love...
+              </DialogTitle>
             </DialogHeader>
-            <div className="space-y-4 text-lg font-body leading-relaxed text-center">
-              <p>In the silence between our breaths, your presence is the melody I crave.</p>
-              <p>Every kiss we've shared is a memory etched in gold, and every kiss we haven't is a promise I look forward to keeping.</p>
-              <p className="font-bold italic text-primary">Forever Yours.</p>
+
+            <div className="space-y-6 text-xl md:text-2xl font-body leading-relaxed text-center drop-shadow-sm">
+              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-300 fill-mode-both">
+                In the silence between our breaths, your presence is the melody I crave.
+              </p>
+              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[1300ms] fill-mode-both">
+                Every kiss we've shared is a memory etched in gold...
+              </p>
+              <p className="animate-in fade-in slide-in-from-bottom-4 duration-700 delay-[2300ms] fill-mode-both">
+                And every kiss we haven't is a promise I look forward to keeping.
+              </p>
+              <div className="pt-4 animate-in fade-in zoom-in duration-1000 delay-[3300ms] fill-mode-both">
+                <p className="font-bold italic text-white text-3xl md:text-4xl drop-shadow-lg">
+                  Forever Yours.
+                </p>
+                <div className="mt-2 text-primary animate-pulse-heart">❤️❤️❤️</div>
+              </div>
             </div>
           </div>
         </DialogContent>
