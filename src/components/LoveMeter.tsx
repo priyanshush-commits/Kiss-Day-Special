@@ -37,7 +37,7 @@ const LoveMeter = ({ onClose }: { onClose: () => void }) => {
         "glass w-full max-w-lg p-8 md:p-12 rounded-[3rem] shadow-2xl text-center transform transition-all duration-700 relative overflow-hidden",
         isFinished && "scale-105 glow-border"
       )}>
-        <button onClick={onClose} className="absolute right-6 top-6 text-white/50 hover:text-white transition-all">
+        <button onClick={onClose} className="absolute right-6 top-6 text-white/50 hover:text-white transition-all z-20">
           <X className="w-6 h-6" />
         </button>
 
@@ -57,24 +57,17 @@ const LoveMeter = ({ onClose }: { onClose: () => void }) => {
 
         <h3 className="text-4xl md:text-5xl font-headline mb-10 text-white text-shadow-romantic">Love Calculator</h3>
         
+        {/* Progress Container */}
         <div className="relative h-20 w-full bg-white/10 rounded-full overflow-hidden mb-10 border border-white/20 shadow-inner">
+          {/* Animated Fill */}
           <div 
-            className="absolute top-0 left-0 h-full bg-gradient-to-r from-pink-500 via-primary to-pink-500 transition-all duration-100 ease-out flex items-center justify-center"
+            className="absolute top-0 left-0 h-full bg-gradient-to-r from-pink-500 via-primary to-pink-500 transition-all duration-100 ease-out"
             style={{ width: `${percentage}%` }}
-          >
-            {/* Percentage text inside the bar when it has enough space */}
-            {percentage > 20 && (
-               <span className="text-white font-bold text-2xl md:text-3xl font-headline drop-shadow-md whitespace-nowrap px-4">
-                {percentage}%
-              </span>
-            )}
-          </div>
-          {/* Overlay text for low percentages or visibility */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-             <span className={cn(
-               "font-bold text-2xl md:text-4xl font-headline transition-colors duration-300",
-               percentage > 50 ? "text-white drop-shadow-md" : "text-white/80"
-             )}>
+          />
+          
+          {/* Single Percentage Display - Centered */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+             <span className="font-bold text-3xl md:text-4xl font-headline text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
               {percentage}%
             </span>
           </div>
